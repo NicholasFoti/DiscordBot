@@ -1,4 +1,4 @@
-﻿using DSharpPlus;
+using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using YoutubeDiscordBot.commands;
 using YoutubeDiscordBot.config;
@@ -19,8 +19,7 @@ namespace YoutubeDiscordBot
 
         static async Task Main(string[] args)
         {
-            var botConfig = new BotConfig();
-            await botConfig.ReadJSON();
+            var config = BotConfig.FromEnvironment();
 
             var discordConfig = new DiscordConfiguration()
             {
