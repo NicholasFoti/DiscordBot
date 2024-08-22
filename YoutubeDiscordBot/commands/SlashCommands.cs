@@ -306,48 +306,54 @@ namespace YoutubeDiscordBot.commands
         {
             await conn.PlayAsync(track);
 
-            var youtubeClient = new YoutubeClient();
-            var video = await youtubeClient.Videos.GetAsync(track.Identifier);
-            var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
-
-            string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
-                                      $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
-                                      $"**🔗 URL for Kane to use in a YouTube edit:**({track.Uri})";
-
-            var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
+            try
             {
-                Text = $"{ctx.Member.DisplayName}'s song",
-                IconUrl = ctx.User.AvatarUrl
+                var youtubeClient = new YoutubeClient();
+                var video = await youtubeClient.Videos.GetAsync(track.Identifier);
+                var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
+
+                string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
+                                          $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
+                                          $"**🔗 URL for Kane to use in a YouTube edit:**({track.Uri})";
+
+                var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
+                {
+                    Text = $"{ctx.Member.DisplayName}'s song",
+                    IconUrl = ctx.User.AvatarUrl
+                };
+
+                var nowPlayingEmbed = new DiscordEmbedBuilder()
+                {
+                    Color = DiscordColor.Green,
+                    Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
+                    Description = musicDescription,
+                    ImageUrl = thumbnailUrl,
+                    Footer = footerEmbed
+                };
+
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(nowPlayingEmbed));
+                Console.WriteLine($"Embed for track {track.Title} sent successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to send embed for track {track.Title}: {ex.Message}");
+            }
+
+            // Attach event handler to handle when the current track finishes
+            conn.PlaybackFinished += async (s, e) =>
+            {
+                // Check if there are more tracks in the queue
+                if (_musicQueues.ContainsKey(ctx.Guild.Id) && _musicQueues[ctx.Guild.Id].Count > 0)
+                {
+                    var nextTrack = _musicQueues[ctx.Guild.Id].Dequeue();
+                    await PlayTrack(ctx, conn, nextTrack);
+                }
+                else
+                {
+                    // No more tracks, disconnect from the voice channel
+                    await conn.DisconnectAsync();
+                }
             };
-
-            var nowPlayingEmbed = new DiscordEmbedBuilder()
-            {
-                Color = DiscordColor.Green,
-                Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
-                Description = musicDescription,
-                ImageUrl = thumbnailUrl,
-                Footer = footerEmbed
-            };
-
-            await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(nowPlayingEmbed));
-
-            // Wait for the track to finish
-            while (conn.CurrentState.CurrentTrack != null)
-            {
-                await Task.Delay(1000);
-            }
-
-            // When the track finishes, play the next one in the queue if available
-            if (_musicQueues.ContainsKey(ctx.Guild.Id) && _musicQueues[ctx.Guild.Id].Count > 0)
-            {
-                var nextTrack = _musicQueues[ctx.Guild.Id].Dequeue();
-                await PlayTrack(ctx, conn, nextTrack);
-            }
-            else
-            {
-                // If no more tracks, disconnect from the voice channel
-                await conn.DisconnectAsync();
-            }
         }
     }
 }
