@@ -316,19 +316,19 @@ namespace YoutubeDiscordBot.commands
                 //                          $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
                 //                          $"**🔗 URL for Kane to use in a YouTube edit:**({track.Uri})";
 
-                //var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
-                //{
-                //    Text = $"{ctx.Member.DisplayName}'s song",
-                //    IconUrl = ctx.User.AvatarUrl
-                //};
+                var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
+                {
+                    Text = $"{ctx.Member.DisplayName}'s song",
+                    IconUrl = ctx.User.AvatarUrl
+                };
 
                 var nowPlayingEmbed = new DiscordEmbedBuilder()
                 {
                     Color = DiscordColor.Green,
-                    Title = "Enjoy your music... You filthy animal",
-                    //Description = "**🎵 Banger Playing:** {track.Title} \n",
+                    Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
+                    Description = $"**🎵 Banger Playing:** {track.Title} \n",
                     //ImageUrl = thumbnailUrl,
-                    //Footer = footerEmbed
+                    Footer = footerEmbed
                 };
 
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(nowPlayingEmbed));
