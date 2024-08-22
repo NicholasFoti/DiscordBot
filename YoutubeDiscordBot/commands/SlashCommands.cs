@@ -325,8 +325,8 @@ namespace YoutubeDiscordBot.commands
                 var nowPlayingEmbed = new DiscordEmbedBuilder()
                 {
                     Color = DiscordColor.Green,
-                    Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
-                    Description = "**🎵 Banger Playing:** {track.Title} \n",
+                    Title = "Enjoy your music... You filthy animal",
+                    //Description = "**🎵 Banger Playing:** {track.Title} \n",
                     //ImageUrl = thumbnailUrl,
                     //Footer = footerEmbed
                 };
