@@ -1,35 +1,32 @@
-# Use the official .NET SDK image to build and publish the app
+# Use the official .NET 8.0 SDK image for building the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the project files to the working directory
-COPY . ./
+# Copy the csproj file and restore any dependencies
+COPY YoutubeDiscordBot.csproj ./
+RUN dotnet restore YoutubeDiscordBot.csproj
 
-# Restore dependencies
-RUN dotnet restore /app/YoutubeDiscordBot/YoutubeDiscordBot.csproj
+# Copy the rest of the application
+COPY . .
 
 # Build the project
-RUN dotnet build --configuration Release /app/YoutubeDiscordBot.sln
+RUN dotnet build --configuration Release --output /app/build
 
-# Publish the project (prepares the app for deployment)
-RUN dotnet publish --configuration Release /app/YoutubeDiscordBot.sln
+# Publish the project to a specific directory
+RUN dotnet publish --configuration Release --output /app/publish /app/YoutubeDiscordBot.csproj
 
-# Use the official .NET runtime image for the final app
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
-
-# Set the working directory inside the container
+# Use the official .NET runtime image for running the application
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 
-# Copy the built project from the build stage
-COPY --from=build /app/out .
+# Copy the published output from the build stage
+COPY --from=build /app/publish .
+
+# Expose any necessary ports (optional)
+# EXPOSE 80
 
 # Set environment variables (optional)
 # ENV ASPNETCORE_URLS=http://+:80
 
-# Expose the port your application will run on
-EXPOSE 80
-
-# Run the application
+# Start the application
 ENTRYPOINT ["dotnet", "YoutubeDiscordBot.dll"]
