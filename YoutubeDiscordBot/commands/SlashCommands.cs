@@ -314,7 +314,7 @@ namespace YoutubeDiscordBot.commands
 
                 string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
                                           $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
-                                          $"**🔗 URL for Kane to use in a YouTube edit:**({track.Uri})";
+                                          $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Uri})";
 
                 var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
                 {
