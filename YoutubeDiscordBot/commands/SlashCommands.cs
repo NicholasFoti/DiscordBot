@@ -340,21 +340,23 @@ namespace YoutubeDiscordBot.commands
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Playing Now"));
             }
 
-            // Attach event handler to handle when the current track finishes
-            conn.PlaybackFinished += async (s, e) =>
+            // Wait for the track to finish
+            while (conn.CurrentState.CurrentTrack != null)
             {
-                // Check if there are more tracks in the queue
-                if (_musicQueues.ContainsKey(ctx.Guild.Id) && _musicQueues[ctx.Guild.Id].Count > 0)
-                {
-                    var nextTrack = _musicQueues[ctx.Guild.Id].Dequeue();
-                    await PlayTrack(ctx, conn, nextTrack);
-                }
-                else
-                {
-                    // No more tracks, disconnect from the voice channel
-                    await conn.DisconnectAsync();
-                }
-            };
+                await Task.Delay(1000);  // Check every second if the track is still playing
+            }
+
+            // When the track finishes, play the next one in the queue if available
+            if (_musicQueues.ContainsKey(ctx.Guild.Id) && _musicQueues[ctx.Guild.Id].Count > 0)
+            {
+                var nextTrack = _musicQueues[ctx.Guild.Id].Dequeue();
+                await PlayTrack(ctx, conn, nextTrack);
+            }
+            else
+            {
+                // If no more tracks, disconnect from the voice channel
+                await conn.DisconnectAsync();
+            }
         }
     }
 }
