@@ -1,28 +1,19 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace YoutubeDiscordBot.config
 {
-    internal class BotConfig
+    public class BotConfig
     {
-        public string token { get; set; }
-        public string prefix { get; set; }
+        public string Token { get; set; }
+        public string Prefix { get; set; }
 
-        public async Task ReadJSON()
+        public static BotConfig FromEnvironment()
         {
-            using (StreamReader sr = new StreamReader($"{AppDomain.CurrentDomain.BaseDirectory}/config.json"))
+            return new BotConfig
             {
-                string json = await sr.ReadToEndAsync();
-                JSONStructure obj = JsonConvert.DeserializeObject<JSONStructure>(json);
-
-                this.token = obj.token;
-                this.prefix = obj.prefix;
-            }
+                Token = Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"),
+                Prefix = Environment.GetEnvironmentVariable("COMMAND_PREFIX") ?? "!"
+            };
         }
-    }
-
-    internal sealed class JSONStructure
-    {
-        public string token { get; set; }
-        public string prefix { get; set; }
     }
 }
