@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9c6oC1ZXbQo=",
+  "dgSpecHash": "MlaKrpgrXTs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\YoutubeDiscordBot\\YoutubeDiscordBot\\YoutubeDiscordBot\\YoutubeDiscordBot.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\DiscordBot\\YoutubeDiscordBot\\YoutubeDiscordBot.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\anglesharp\\1.1.2\\anglesharp.1.1.2.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\concurrenthashset\\1.3.0\\concurrenthashset.1.3.0.nupkg.sha512",

@@ -8,13 +8,13 @@ WORKDIR /app
 COPY . ./
 
 # Restore dependencies
-RUN dotnet restore
+RUN dotnet restore /app/YoutubeDiscordBot/YoutubeDiscordBot.csproj
 
 # Build the project
-RUN dotnet build --configuration Release --output out
+RUN dotnet build --configuration Release /app/YoutubeDiscordBot.sln
 
 # Publish the project (prepares the app for deployment)
-RUN dotnet publish --configuration Release --output out
+RUN dotnet publish --configuration Release /app/YoutubeDiscordBot.sln
 
 # Use the official .NET runtime image for the final app
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
