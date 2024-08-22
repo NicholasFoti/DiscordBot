@@ -308,9 +308,9 @@ namespace YoutubeDiscordBot.commands
 
             try
             {
-                //var youtubeClient = new YoutubeClient();
-                //var video = await youtubeClient.Videos.GetAsync("https://youtube.com/watch?v=u_yIGGhubZs");
-                //var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
+                var youtubeClient = new YoutubeClient();
+                var video = await youtubeClient.Videos.GetAsync("https://youtube.com/watch?v=u_yIGGhubZs");
+                var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
 
                 //string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
                 //                          $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
@@ -327,7 +327,7 @@ namespace YoutubeDiscordBot.commands
                     Color = DiscordColor.Green,
                     Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
                     Description = $"**🎵 Banger Playing:** {track.Title} \n",
-                    //ImageUrl = thumbnailUrl,
+                    ImageUrl = thumbnailUrl,
                     Footer = footerEmbed
                 };
 
