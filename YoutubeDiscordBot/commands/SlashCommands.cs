@@ -309,7 +309,7 @@ namespace YoutubeDiscordBot.commands
             try
             {
                 var youtubeClient = new YoutubeClient();
-                var video = await youtubeClient.Videos.GetAsync(track.Identifier);
+                var video = await youtubeClient.Videos.GetAsync("https://youtube.com/watch?v=u_yIGGhubZs");
                 var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
 
                 string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
