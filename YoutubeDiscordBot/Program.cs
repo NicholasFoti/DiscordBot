@@ -1,0 +1,85 @@
+﻿using DSharpPlus;
+using DSharpPlus.CommandsNext;
+using YoutubeDiscordBot.commands;
+using YoutubeDiscordBot.config;
+using DSharpPlus.EventArgs;
+using DSharpPlus.Interactivity.Extensions;
+using DSharpPlus.Interactivity;
+using DSharpPlus.Lavalink;
+using DSharpPlus.SlashCommands;
+using DSharpPlus.Net;
+
+
+namespace YoutubeDiscordBot
+{
+    internal class Program
+    {
+        public static DiscordClient Client { get; set; }
+        public static CommandsNextExtension Commands {  get; set; }
+
+        static async Task Main(string[] args)
+        {
+            var botConfig = new BotConfig();
+            await botConfig.ReadJSON();
+
+            var discordConfig = new DiscordConfiguration()
+            {
+                Intents = DiscordIntents.All,
+                Token = Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"),
+                TokenType = TokenType.Bot,
+                AutoReconnect = true
+            };
+
+            Client = new DiscordClient(discordConfig);
+
+            Client.UseInteractivity(new InteractivityConfiguration
+            {
+                Timeout = TimeSpan.FromMinutes(2)
+            });
+
+            Client.Ready += Client_Ready;
+
+            //var commandsConfig = new CommandsNextConfiguration()
+            //{
+            //    StringPrefixes = new string[] { Environment.GetEnvironmentVariable("COMMAND_PREFIX") },
+            //    EnableMentionPrefix = true,
+            //    EnableDms = true,
+            //    EnableDefaultHelp = true,
+            //};
+
+            //Commands = Client.UseCommandsNext(commandsConfig);
+            var slash = Client.UseSlashCommands();
+
+            //Commands.RegisterCommands<MusicCommands>();
+            slash.RegisterCommands<SlashCommands>();
+            Console.WriteLine("Slash commands registered successfully.");
+
+            var endpoint = new ConnectionEndpoint
+            {
+                Hostname = "v3.lavalink.rocks",
+                Port = 443,
+                Secured = true,
+            };
+
+            var lavalinkConfig = new LavalinkConfiguration
+            {
+                Password = "horizxon.tech",
+                RestEndpoint = endpoint,
+                SocketEndpoint = endpoint
+            };
+
+            var lavalink = Client.UseLavalink();
+
+            await Client.ConnectAsync();
+            await lavalink.ConnectAsync(lavalinkConfig);
+            await Task.Delay(-1);
+        }
+
+        private static Task Client_Ready(DiscordClient sender, ReadyEventArgs args)
+        {
+            return Task.CompletedTask;
+        }
+    }
+}
+
+
