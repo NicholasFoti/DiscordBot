@@ -308,6 +308,12 @@ namespace YoutubeDiscordBot.commands
 
             try
             {
+                using (var client = new HttpClient())
+                {
+                    var response = await client.GetAsync("https://www.google.com");
+                    Console.WriteLine($"Network test response: {response.StatusCode}");
+                }
+
                 var youtubeClient = new YoutubeClient();
                 Console.WriteLine($"Fetching video details for {track.Identifier}");
 
