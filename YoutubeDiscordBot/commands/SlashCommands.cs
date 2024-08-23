@@ -306,68 +306,70 @@ namespace YoutubeDiscordBot.commands
         {
             await conn.PlayAsync(track);
 
-            try
+            int retryCount = 0;
+            const int maxRetries = 3;
+            bool success = false;
+
+            while (!success && retryCount < maxRetries)
             {
-                using (var client = new HttpClient())
+                try
                 {
-                    var response = await client.GetAsync("https://www.google.com");
-                    Console.WriteLine($"Network test response: {response.StatusCode}");
+
+                    var youtubeClient = new YoutubeClient();
+                    Console.WriteLine($"Fetching video details for {track.Identifier}");
+
+                    var video = await youtubeClient.Videos.GetAsync(track.Identifier);
+                    Console.WriteLine($"Video details fetched: {video.Title}");
+
+                    var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
+                    Console.WriteLine($"Thumbnail URL: {thumbnailUrl}");
+
+
+                    string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
+                                              $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
+                                              $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Uri})";
+
+                    var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
+                    {
+                        Text = $"{ctx.Member.DisplayName}'s song",
+                        IconUrl = ctx.User.AvatarUrl
+                    };
+
+                    var nowPlayingEmbed = new DiscordEmbedBuilder()
+                    {
+                        Color = DiscordColor.Green,
+                        Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
+                        Description = musicDescription,
+                        ImageUrl = thumbnailUrl,
+                        Footer = footerEmbed
+                    };
+
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(nowPlayingEmbed));
+                    Console.WriteLine($"Embed for track {track.Title} sent successfully.");
                 }
-
-                var youtubeClient = new YoutubeClient();
-                Console.WriteLine($"Fetching video details for {track.Identifier}");
-
-                var video = await youtubeClient.Videos.GetAsync(track.Identifier);
-                Console.WriteLine($"Video details fetched: {video.Title}");
-
-                var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
-                Console.WriteLine($"Thumbnail URL: {thumbnailUrl}");
-
-
-                string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
-                                          $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
-                                          $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Uri})";
-
-                var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
+                catch (Exception ex)
                 {
-                    Text = $"{ctx.Member.DisplayName}'s song",
-                    IconUrl = ctx.User.AvatarUrl
-                };
+                    Console.WriteLine($"Failed to retrieve video details or send embed for track {track.Identifier}: {ex.Message}");
+                    var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
+                    {
+                        Text = $"{ctx.Member.DisplayName}'s song",
+                        IconUrl = ctx.User.AvatarUrl
+                    };
+                    string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
+                              $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
+                              $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Uri})";
+                    var playingEmbed = new DiscordEmbedBuilder()
+                    {
+                        Color = DiscordColor.Green,
+                        Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
+                        Description = musicDescription,
+                        Footer = footerEmbed
+                    };
 
-                var nowPlayingEmbed = new DiscordEmbedBuilder()
-                {
-                    Color = DiscordColor.Green,
-                    Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
-                    Description = musicDescription,
-                    ImageUrl = thumbnailUrl,
-                    Footer = footerEmbed
-                };
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(playingEmbed));
+                    Console.WriteLine($"Default embed sent for track {track.Title} due to exception.");
 
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(nowPlayingEmbed));
-                Console.WriteLine($"Embed for track {track.Title} sent successfully.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Failed to retrieve video details or send embed for track {track.Identifier}: {ex.Message}");
-                var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
-                {
-                    Text = $"{ctx.Member.DisplayName}'s song",
-                    IconUrl = ctx.User.AvatarUrl
-                };
-                string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
-                          $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
-                          $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Uri})";
-                var playingEmbed = new DiscordEmbedBuilder()
-                {
-                    Color = DiscordColor.Green,
-                    Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
-                    Description = musicDescription,
-                    Footer = footerEmbed
-                };
-
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(playingEmbed));
-                Console.WriteLine($"Default embed sent for track {track.Title} due to exception.");
-
+                }
             }
 
             // Wait for the track to finish
