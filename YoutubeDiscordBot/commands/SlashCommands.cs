@@ -306,62 +306,80 @@ namespace YoutubeDiscordBot.commands
         {
             await conn.PlayAsync(track);
 
-            int retryCount = 0;
-            const int maxRetries = 5;  // Reduced retries
-            const int initialDelay = 2000;  // 2 seconds delay
-            bool success = false;
-
-            while (!success && retryCount < maxRetries)
+            try
             {
-                try
+                var youtubeClient = new YoutubeClient();
+                Console.WriteLine($"Fetching video details for {track.Identifier}");
+
+                var video = await youtubeClient.Videos.GetAsync(track.Identifier);
+                Console.WriteLine($"Video details fetched: {video.Title}");
+
+                var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
+                Console.WriteLine($"Thumbnail URL: {thumbnailUrl}");
+
+
+                string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
+                                          $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
+                                          $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Uri})";
+
+                var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
                 {
-                    var youtubeClient = new YoutubeClient();
-                    Console.WriteLine($"Attempting to fetch video details for {track.Identifier}, attempt {retryCount + 1}");
-                    var video = await youtubeClient.Videos.GetAsync(track.Identifier);
-                    Console.WriteLine($"Video details retrieved: {video.Title}");
+                    Text = $"{ctx.Member.DisplayName}'s song",
+                    IconUrl = ctx.User.AvatarUrl
+                };
 
-                    var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
-
-                    var nowPlayingEmbed = new DiscordEmbedBuilder()
-                    {
-                        Color = DiscordColor.Green,
-                        Title = "🎶 Now Playing",
-                        Description = $"**🎵 Now Playing:** {track.Title} \n**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2}",
-                        ImageUrl = thumbnailUrl
-                    };
-
-                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(nowPlayingEmbed));
-                    success = true;
-                }
-                catch (Exception ex)
+                var nowPlayingEmbed = new DiscordEmbedBuilder()
                 {
-                    retryCount++;
-                    Console.WriteLine($"Failed to retrieve video details for {track.Identifier}: {ex.Message}");
+                    Color = DiscordColor.Green,
+                    Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
+                    Description = musicDescription,
+                    ImageUrl = thumbnailUrl,
+                    Footer = footerEmbed
+                };
 
-                    if (retryCount >= maxRetries)
-                    {
-                        Console.WriteLine($"Skipping video {track.Identifier} after {maxRetries} attempts.");
-                        break;
-                    }
-                    else
-                    {
-                        await Task.Delay(initialDelay * retryCount);  // Exponential backoff
-                    }
-                }
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(nowPlayingEmbed));
+                Console.WriteLine($"Embed for track {track.Title} sent successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to retrieve video details or send embed for track {track.Identifier}: {ex.Message}");
+                var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
+                {
+                    Text = $"{ctx.Member.DisplayName}'s song",
+                    IconUrl = ctx.User.AvatarUrl
+                };
+                string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
+                          $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
+                          $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Uri})";
+                var playingEmbed = new DiscordEmbedBuilder()
+                {
+                    Color = DiscordColor.Green,
+                    Title = $"🎶 Enjoy your music... You filthy animal 🎶 \n",
+                    Description = musicDescription,
+                    Footer = footerEmbed
+                };
+
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(playingEmbed));
+                Console.WriteLine($"Default embed sent for track {track.Title} due to exception.");
+
             }
 
-            if (!success)
+            // Wait for the track to finish
+            while (conn.CurrentState.CurrentTrack != null)
             {
-                Console.WriteLine($"Moving on to the next track after failing to retrieve video {track.Identifier}.");
-                if (_musicQueues.ContainsKey(ctx.Guild.Id) && _musicQueues[ctx.Guild.Id].Count > 0)
-                {
-                    var nextTrack = _musicQueues[ctx.Guild.Id].Dequeue();
-                    await PlayTrack(ctx, conn, nextTrack);
-                }
-                else
-                {
-                    await conn.DisconnectAsync();
-                }
+                await Task.Delay(1000);  // Check every second if the track is still playing
+            }
+
+            // When the track finishes, play the next one in the queue if available
+            if (_musicQueues.ContainsKey(ctx.Guild.Id) && _musicQueues[ctx.Guild.Id].Count > 0)
+            {
+                var nextTrack = _musicQueues[ctx.Guild.Id].Dequeue();
+                await PlayTrack(ctx, conn, nextTrack);
+            }
+            else
+            {
+                // If no more tracks, disconnect from the voice channel
+                await conn.DisconnectAsync();
             }
         }
     }
