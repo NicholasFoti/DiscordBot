@@ -309,8 +309,14 @@ namespace YoutubeDiscordBot.commands
             try
             {
                 var youtubeClient = new YoutubeClient();
-                var video = await youtubeClient.Videos.GetAsync("https://youtube.com/watch?v=u_yIGGhubZs");
+                Console.WriteLine($"Fetching video details for {track.Identifier}");
+
+                var video = await youtubeClient.Videos.GetAsync(track.Identifier);
+                Console.WriteLine($"Video details fetched: {video.Title}");
+
                 var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
+                Console.WriteLine($"Thumbnail URL: {thumbnailUrl}");
+
 
                 string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
                                           $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
@@ -336,7 +342,7 @@ namespace YoutubeDiscordBot.commands
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to send embed for track {track.Title}: {ex.Message}");
+                Console.WriteLine($"Failed to retrieve video details or send embed for track {track.Identifier}: {ex.Message}");
                 var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
                 {
                     Text = $"{ctx.Member.DisplayName}'s song",
@@ -354,6 +360,8 @@ namespace YoutubeDiscordBot.commands
                 };
 
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(playingEmbed));
+                Console.WriteLine($"Default embed sent for track {track.Title} due to exception.");
+
             }
 
             // Wait for the track to finish
