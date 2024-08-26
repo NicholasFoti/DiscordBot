@@ -56,7 +56,7 @@ namespace YoutubeDiscordBot
             var endpoint = new ConnectionEndpoint
             {
                 Hostname = "lavalink-legacy.jompo.cloud",
-                Port = 443,
+                Port = 2333,
                 Secured = false,
             };
 
