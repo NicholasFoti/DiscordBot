@@ -55,14 +55,14 @@ namespace YoutubeDiscordBot
 
             var endpoint = new ConnectionEndpoint
             {
-                Hostname = "lavalink-legacy.jompo.cloud",
-                Port = 2333,
-                Secured = false,
+                Hostname = "v3.lavalink.rocks",
+                Port = 443,
+                Secured = true,
             };
 
             var lavalinkConfig = new LavalinkConfiguration
             {
-                Password = "jompo",
+                Password = "horizxon.tech",
                 RestEndpoint = endpoint,
                 SocketEndpoint = endpoint
             };
@@ -71,12 +71,44 @@ namespace YoutubeDiscordBot
 
             await Client.ConnectAsync();
             await lavalink.ConnectAsync(lavalinkConfig);
+
+            _ = MonitorLavalinkConnection(lavalink, lavalinkConfig);
+
+
             await Task.Delay(-1);
         }
 
         private static Task Client_Ready(DiscordClient sender, ReadyEventArgs args)
         {
             return Task.CompletedTask;
+        }
+
+        private static async Task MonitorLavalinkConnection(LavalinkExtension lavalink, LavalinkConfiguration lavalinkConfig)
+        {
+            while (true)
+            {
+                foreach (var node in lavalink.ConnectedNodes.Values)
+                {
+                    if (!node.IsConnected)
+                    {
+                        Console.WriteLine("Lavalink connection lost, attempting to reconnect...");
+
+                        // Log the error and attempt reconnection.
+                        try
+                        {
+                            await lavalink.ConnectAsync(lavalinkConfig);
+                            Console.WriteLine("Reconnected to Lavalink successfully.");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Failed to reconnect to Lavalink: {ex.Message}");
+                        }
+                    }
+                }
+
+                // Wait before checking the connection status again
+                await Task.Delay(TimeSpan.FromSeconds(10));
+            }
         }
     }
 }
