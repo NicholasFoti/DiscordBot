@@ -54,7 +54,6 @@ namespace YoutubeDiscordBot.commands
                 try
                 {
                     await lavalinkInstance.ConnectAsync(lavalinkConfig);
-                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Lavalink connection re-established."));
                 }
                 catch (Exception ex)
                 {
@@ -402,8 +401,19 @@ namespace YoutubeDiscordBot.commands
             }
             else
             {
-                // If no more tracks, disconnect from the voice channel
-                await conn.DisconnectAsync();
+                await Task.Delay(TimeSpan.FromMinutes(5));
+
+                if (conn.CurrentState.CurrentTrack == null)
+                {
+                    // If still no track is playing, disconnect from the voice channel
+                    await conn.DisconnectAsync();
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("No more tracks in the queue. The bot has disconnected after 5 minutes of inactivity."));
+                }
+                else
+                {
+                    // If a track was added to the queue during the delay, continue playing
+                    await PlayTrack(ctx, conn, _musicQueues[ctx.Guild.Id].Dequeue());
+                }
             }
         }
     }
