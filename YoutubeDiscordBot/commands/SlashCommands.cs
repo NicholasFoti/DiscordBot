@@ -6,6 +6,7 @@ using YoutubeExplode;
 using YoutubeExplode.Common;
 using DSharpPlus.SlashCommands;
 using DSharpPlus;
+using DSharpPlus.Net;
 
 namespace YoutubeDiscordBot.commands
 {
@@ -35,8 +36,31 @@ namespace YoutubeDiscordBot.commands
 
             if (!lavalinkInstance.ConnectedNodes.Any())
             {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Lavalink connection is not established."));
-                return;
+                // Reconnect Lavalink if the connection was lost
+                var endpoint = new ConnectionEndpoint
+                {
+                    Hostname = "v3.lavalink.rocks",
+                    Port = 443,
+                    Secured = true,
+                };
+
+                var lavalinkConfig = new LavalinkConfiguration
+                {
+                    Password = "horizxon.tech",
+                    RestEndpoint = endpoint,
+                    SocketEndpoint = endpoint
+                };
+
+                try
+                {
+                    await lavalinkInstance.ConnectAsync(lavalinkConfig);
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Lavalink connection re-established."));
+                }
+                catch (Exception ex)
+                {
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"Failed to reconnect to Lavalink: {ex.Message}"));
+                    return;
+                }
             }
 
             if (ctx.Member.VoiceState.Channel.Type != DSharpPlus.ChannelType.Voice)

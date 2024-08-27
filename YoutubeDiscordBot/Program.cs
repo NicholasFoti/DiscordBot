@@ -37,6 +37,7 @@ namespace YoutubeDiscordBot
             });
 
             Client.Ready += Client_Ready;
+            Client.ClientErrored += Client_ClientErrored;
 
             //var commandsConfig = new CommandsNextConfiguration()
             //{
@@ -72,9 +73,6 @@ namespace YoutubeDiscordBot
             await Client.ConnectAsync();
             await lavalink.ConnectAsync(lavalinkConfig);
 
-            _ = MonitorLavalinkConnection(lavalink, lavalinkConfig);
-
-
             await Task.Delay(-1);
         }
 
@@ -83,32 +81,10 @@ namespace YoutubeDiscordBot
             return Task.CompletedTask;
         }
 
-        private static async Task MonitorLavalinkConnection(LavalinkExtension lavalink, LavalinkConfiguration lavalinkConfig)
+        private static Task Client_ClientErrored(DiscordClient sender, ClientErrorEventArgs e)
         {
-            while (true)
-            {
-                foreach (var node in lavalink.ConnectedNodes.Values)
-                {
-                    if (!node.IsConnected)
-                    {
-                        Console.WriteLine("Lavalink connection lost, attempting to reconnect...");
-
-                        // Log the error and attempt reconnection.
-                        try
-                        {
-                            await lavalink.ConnectAsync(lavalinkConfig);
-                            Console.WriteLine("Reconnected to Lavalink successfully.");
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Failed to reconnect to Lavalink: {ex.Message}");
-                        }
-                    }
-                }
-
-                // Wait before checking the connection status again
-                await Task.Delay(TimeSpan.FromSeconds(10));
-            }
+            Console.WriteLine($"An error occurred: {e.Exception.Message}");
+            return Task.CompletedTask;
         }
     }
 }

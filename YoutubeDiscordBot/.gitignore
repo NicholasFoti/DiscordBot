@@ -1,2 +1,6 @@
 # .gitignore
 config.json
+
+.vs/
+
+.vs/ProjectEvaluation/youtubediscordbot.metadata.v8.bin
