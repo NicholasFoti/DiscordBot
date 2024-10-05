@@ -52,23 +52,23 @@
           "dependencies": {
             "DSharpPlus": {
               "target": "Package",
-              "version": "[4.4.9, )"
+              "version": "[4.5.0, )"
             },
             "DSharpPlus.CommandsNext": {
               "target": "Package",
-              "version": "[4.4.9, )"
+              "version": "[4.5.0, )"
             },
             "DSharpPlus.Interactivity": {
               "target": "Package",
-              "version": "[4.4.9, )"
+              "version": "[4.5.0, )"
             },
             "DSharpPlus.Lavalink": {
               "target": "Package",
-              "version": "[4.4.9, )"
+              "version": "[4.5.0, )"
             },
             "DSharpPlus.SlashCommands": {
               "target": "Package",
-              "version": "[4.4.9, )"
+              "version": "[4.5.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -76,7 +76,7 @@
             },
             "YoutubeExplode": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[6.4.3, )"
             }
           },
           "imports": [

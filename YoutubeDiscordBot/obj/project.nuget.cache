@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "MlaKrpgrXTs=",
+  "dgSpecHash": "T+DpLVF9DZE=",
   "success": true,
   "projectFilePath": "C:\\Users\\Admin\\Desktop\\DiscordBot\\YoutubeDiscordBot\\YoutubeDiscordBot.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\anglesharp\\1.1.2\\anglesharp.1.1.2.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\concurrenthashset\\1.3.0\\concurrenthashset.1.3.0.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\dsharpplus\\4.4.9\\dsharpplus.4.4.9.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\dsharpplus.commandsnext\\4.4.9\\dsharpplus.commandsnext.4.4.9.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\dsharpplus.interactivity\\4.4.9\\dsharpplus.interactivity.4.4.9.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\dsharpplus.lavalink\\4.4.9\\dsharpplus.lavalink.4.4.9.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\dsharpplus.slashcommands\\4.4.9\\dsharpplus.slashcommands.4.4.9.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\dsharpplus\\4.5.0\\dsharpplus.4.5.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\dsharpplus.commandsnext\\4.5.0\\dsharpplus.commandsnext.4.5.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\dsharpplus.interactivity\\4.5.0\\dsharpplus.interactivity.4.5.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\dsharpplus.lavalink\\4.5.0\\dsharpplus.lavalink.4.5.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\dsharpplus.slashcommands\\4.5.0\\dsharpplus.slashcommands.4.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.1\\microsoft.extensions.dependencyinjection.5.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
@@ -84,7 +84,7 @@
     "C:\\Users\\Admin\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.threading.threadpool\\4.3.0\\system.threading.threadpool.4.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\youtubeexplode\\6.4.0\\youtubeexplode.6.4.0.nupkg.sha512"
+    "C:\\Users\\Admin\\.nuget\\packages\\youtubeexplode\\6.4.3\\youtubeexplode.6.4.3.nupkg.sha512"
   ],
   "logs": []
 }

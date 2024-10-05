@@ -31,7 +31,7 @@
           }
         }
       },
-      "DSharpPlus/4.4.9": {
+      "DSharpPlus/4.5.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
@@ -55,10 +55,10 @@
           }
         }
       },
-      "DSharpPlus.CommandsNext/4.4.9": {
+      "DSharpPlus.CommandsNext/4.5.0": {
         "type": "package",
         "dependencies": {
-          "DSharpPlus": "4.4.9",
+          "DSharpPlus": "4.5.0",
           "Microsoft.Extensions.DependencyInjection": "5.0.1"
         },
         "compile": {
@@ -72,11 +72,11 @@
           }
         }
       },
-      "DSharpPlus.Interactivity/4.4.9": {
+      "DSharpPlus.Interactivity/4.5.0": {
         "type": "package",
         "dependencies": {
           "ConcurrentHashSet": "1.3.0",
-          "DSharpPlus": "4.4.9"
+          "DSharpPlus": "4.5.0"
         },
         "compile": {
           "lib/netstandard2.0/DSharpPlus.Interactivity.dll": {
@@ -89,10 +89,10 @@
           }
         }
       },
-      "DSharpPlus.Lavalink/4.4.9": {
+      "DSharpPlus.Lavalink/4.5.0": {
         "type": "package",
         "dependencies": {
-          "DSharpPlus": "4.4.9"
+          "DSharpPlus": "4.5.0"
         },
         "compile": {
           "lib/netstandard2.0/DSharpPlus.Lavalink.dll": {
@@ -105,10 +105,10 @@
           }
         }
       },
-      "DSharpPlus.SlashCommands/4.4.9": {
+      "DSharpPlus.SlashCommands/4.5.0": {
         "type": "package",
         "dependencies": {
-          "DSharpPlus": "4.4.9",
+          "DSharpPlus": "4.5.0",
           "Microsoft.Extensions.DependencyInjection": "5.0.1"
         },
         "compile": {
@@ -1399,7 +1399,7 @@
           }
         }
       },
-      "YoutubeExplode/6.4.0": {
+      "YoutubeExplode/6.4.3": {
         "type": "package",
         "dependencies": {
           "AngleSharp": "1.1.2"
@@ -1460,71 +1460,71 @@
         "lib/netstandard2.0/ConcurrentCollections.xml"
       ]
     },
-    "DSharpPlus/4.4.9": {
-      "sha512": "RudOotg29ZEtbpmYrAfcIL323QjxbwmOZjBUwhUH/SfYKOlu82xBU/4Pr40dDY68EzzjkCxvRCtdcWeSVRWtKA==",
+    "DSharpPlus/4.5.0": {
+      "sha512": "DilQxEBSQ+826t17QsOertkpDleUNKDk7pTr3eEmmm3eGOW3ipQW4eVASVBB0YIciFjV/qGbkzTp0+qcCdm9YA==",
       "type": "package",
-      "path": "dsharpplus/4.4.9",
+      "path": "dsharpplus/4.5.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "dsharpplus.4.4.9.nupkg.sha512",
+        "dsharpplus.4.5.0.nupkg.sha512",
         "dsharpplus.nuspec",
         "dsharpplus.png",
         "lib/netstandard2.0/DSharpPlus.dll",
         "lib/netstandard2.0/DSharpPlus.xml"
       ]
     },
-    "DSharpPlus.CommandsNext/4.4.9": {
-      "sha512": "6nJMa4fiPPYCwTxnniBJve19QB9DLtpTSg1aF6cWPb9PkeunlUJVaV7fGI5ZHf8ceJpykWb+3L6xlbKsVwojpw==",
+    "DSharpPlus.CommandsNext/4.5.0": {
+      "sha512": "CeHQGhQuUkujgKPMBqxnykSg8zaPW3MSou7iRL+vRdFqh1iIACjkQXiKhvp/YmawqxZs1YYsvcc2X9L5IKBahw==",
       "type": "package",
-      "path": "dsharpplus.commandsnext/4.4.9",
+      "path": "dsharpplus.commandsnext/4.5.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "dsharpplus.commandsnext.4.4.9.nupkg.sha512",
+        "dsharpplus.commandsnext.4.5.0.nupkg.sha512",
         "dsharpplus.commandsnext.nuspec",
         "dsharpplus.png",
         "lib/netstandard2.0/DSharpPlus.CommandsNext.dll",
         "lib/netstandard2.0/DSharpPlus.CommandsNext.xml"
       ]
     },
-    "DSharpPlus.Interactivity/4.4.9": {
-      "sha512": "Z2kNlaecDczdpoLcvK33qx6gb5oo3BnoZ/cRS4XK69nqi7cGYu80qqYcvvZMvDPGx+fMOzehwr6MkinYHTXi7w==",
+    "DSharpPlus.Interactivity/4.5.0": {
+      "sha512": "zZcxwkpOSkpK+Tj0c3OgRf4CxCM/N+uqeYi9nV+zb2WYtEy23+slIzqlKVqhBs2rKGkbXwOxDCaMwha+ih3YjA==",
       "type": "package",
-      "path": "dsharpplus.interactivity/4.4.9",
+      "path": "dsharpplus.interactivity/4.5.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "dsharpplus.interactivity.4.4.9.nupkg.sha512",
+        "dsharpplus.interactivity.4.5.0.nupkg.sha512",
         "dsharpplus.interactivity.nuspec",
         "dsharpplus.png",
         "lib/netstandard2.0/DSharpPlus.Interactivity.dll",
         "lib/netstandard2.0/DSharpPlus.Interactivity.xml"
       ]
     },
-    "DSharpPlus.Lavalink/4.4.9": {
-      "sha512": "nJHgVTwnsxu9XNtjMdINAVoWNoH5nBd388Rsni77THeMcYOyDPVcY+5M/re7tmD5QbRD8wz3o1eMpqAYmQ7mEQ==",
+    "DSharpPlus.Lavalink/4.5.0": {
+      "sha512": "8wpOZmLkGBJ359eR+hPNOP7IzBVDiSou/VbMzAN7K9O2U4DhtkVTv19Uz0MJLgNVY+CnW06IaOG0863dXCQMoQ==",
       "type": "package",
-      "path": "dsharpplus.lavalink/4.4.9",
+      "path": "dsharpplus.lavalink/4.5.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "dsharpplus.lavalink.4.4.9.nupkg.sha512",
+        "dsharpplus.lavalink.4.5.0.nupkg.sha512",
         "dsharpplus.lavalink.nuspec",
         "dsharpplus.png",
         "lib/netstandard2.0/DSharpPlus.Lavalink.dll",
         "lib/netstandard2.0/DSharpPlus.Lavalink.xml"
       ]
     },
-    "DSharpPlus.SlashCommands/4.4.9": {
-      "sha512": "rjs6AF8+J87Jufzw5TYfVa/6aXCs9hcZJ+aUfLsy+nGYYSEzKHaqz6pr/UzqatvN78GjM3N1ZPIunxLhE+qSrw==",
+    "DSharpPlus.SlashCommands/4.5.0": {
+      "sha512": "6ngr6EqPPfCibHnrga+8nwqsFJHM00JgiqwynKW/zY3fZnU35TUdbGiOL/RhMgx0bH/UnW6kB7YiF8dalG7mFA==",
       "type": "package",
-      "path": "dsharpplus.slashcommands/4.4.9",
+      "path": "dsharpplus.slashcommands/4.5.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "dsharpplus.png",
-        "dsharpplus.slashcommands.4.4.9.nupkg.sha512",
+        "dsharpplus.slashcommands.4.5.0.nupkg.sha512",
         "dsharpplus.slashcommands.nuspec",
         "lib/netstandard2.0/DSharpPlus.SlashCommands.dll",
         "lib/netstandard2.0/DSharpPlus.SlashCommands.xml"
@@ -4468,10 +4468,10 @@
         "system.threading.timer.nuspec"
       ]
     },
-    "YoutubeExplode/6.4.0": {
-      "sha512": "jdjgUEQyTXG8CRtcadwjbymCNOQCis3fE1YQbjEZID+7foFcH+2gVqli4MpA+AFwDI2klZBG2aaFbOLDqYExzg==",
+    "YoutubeExplode/6.4.3": {
+      "sha512": "XM5NqB6rGBfeIlQNxx5XUFQ4eYtm9t6Gi0I0Q8UtiekwnPx3kt11cL/KAK1gnRq1huuJ43AKb/jq7A6gSciKNg==",
       "type": "package",
-      "path": "youtubeexplode/6.4.0",
+      "path": "youtubeexplode/6.4.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4486,20 +4486,20 @@
         "lib/netstandard2.0/YoutubeExplode.xml",
         "lib/netstandard2.1/YoutubeExplode.dll",
         "lib/netstandard2.1/YoutubeExplode.xml",
-        "youtubeexplode.6.4.0.nupkg.sha512",
+        "youtubeexplode.6.4.3.nupkg.sha512",
         "youtubeexplode.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "DSharpPlus >= 4.4.9",
-      "DSharpPlus.CommandsNext >= 4.4.9",
-      "DSharpPlus.Interactivity >= 4.4.9",
-      "DSharpPlus.Lavalink >= 4.4.9",
-      "DSharpPlus.SlashCommands >= 4.4.9",
+      "DSharpPlus >= 4.5.0",
+      "DSharpPlus.CommandsNext >= 4.5.0",
+      "DSharpPlus.Interactivity >= 4.5.0",
+      "DSharpPlus.Lavalink >= 4.5.0",
+      "DSharpPlus.SlashCommands >= 4.5.0",
       "Newtonsoft.Json >= 13.0.3",
-      "YoutubeExplode >= 6.4.0"
+      "YoutubeExplode >= 6.4.3"
     ]
   },
   "packageFolders": {
@@ -4554,23 +4554,23 @@
         "dependencies": {
           "DSharpPlus": {
             "target": "Package",
-            "version": "[4.4.9, )"
+            "version": "[4.5.0, )"
           },
           "DSharpPlus.CommandsNext": {
             "target": "Package",
-            "version": "[4.4.9, )"
+            "version": "[4.5.0, )"
           },
           "DSharpPlus.Interactivity": {
             "target": "Package",
-            "version": "[4.4.9, )"
+            "version": "[4.5.0, )"
           },
           "DSharpPlus.Lavalink": {
             "target": "Package",
-            "version": "[4.4.9, )"
+            "version": "[4.5.0, )"
           },
           "DSharpPlus.SlashCommands": {
             "target": "Package",
-            "version": "[4.4.9, )"
+            "version": "[4.5.0, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -4578,7 +4578,7 @@
           },
           "YoutubeExplode": {
             "target": "Package",
-            "version": "[6.4.0, )"
+            "version": "[6.4.3, )"
           }
         },
         "imports": [
