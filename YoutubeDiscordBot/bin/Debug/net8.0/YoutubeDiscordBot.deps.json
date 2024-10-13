@@ -8,13 +8,13 @@
     ".NETCoreApp,Version=v8.0": {
       "YoutubeDiscordBot/1.0.0": {
         "dependencies": {
-          "DSharpPlus": "4.4.9",
-          "DSharpPlus.CommandsNext": "4.4.9",
-          "DSharpPlus.Interactivity": "4.4.9",
-          "DSharpPlus.Lavalink": "4.4.9",
-          "DSharpPlus.SlashCommands": "4.4.9",
+          "DSharpPlus": "4.5.0",
+          "DSharpPlus.CommandsNext": "4.5.0",
+          "DSharpPlus.Interactivity": "4.5.0",
+          "DSharpPlus.Lavalink": "4.5.0",
+          "DSharpPlus.SlashCommands": "4.5.0",
           "Newtonsoft.Json": "13.0.3",
-          "YoutubeExplode": "6.4.0"
+          "YoutubeExplode": "6.4.3"
         },
         "runtime": {
           "YoutubeDiscordBot.dll": {}
@@ -39,7 +39,7 @@
           }
         }
       },
-      "DSharpPlus/4.4.9": {
+      "DSharpPlus/4.5.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
           "Newtonsoft.Json": "13.0.3",
@@ -53,55 +53,55 @@
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.dll": {
-            "assemblyVersion": "4.4.9.0",
-            "fileVersion": "4.4.9.0"
+            "assemblyVersion": "4.5.0.0",
+            "fileVersion": "4.5.0.0"
           }
         }
       },
-      "DSharpPlus.CommandsNext/4.4.9": {
+      "DSharpPlus.CommandsNext/4.5.0": {
         "dependencies": {
-          "DSharpPlus": "4.4.9",
+          "DSharpPlus": "4.5.0",
           "Microsoft.Extensions.DependencyInjection": "5.0.1"
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.CommandsNext.dll": {
-            "assemblyVersion": "4.4.9.0",
-            "fileVersion": "4.4.9.0"
+            "assemblyVersion": "4.5.0.0",
+            "fileVersion": "4.5.0.0"
           }
         }
       },
-      "DSharpPlus.Interactivity/4.4.9": {
+      "DSharpPlus.Interactivity/4.5.0": {
         "dependencies": {
           "ConcurrentHashSet": "1.3.0",
-          "DSharpPlus": "4.4.9"
+          "DSharpPlus": "4.5.0"
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.Interactivity.dll": {
-            "assemblyVersion": "4.4.9.0",
-            "fileVersion": "4.4.9.0"
+            "assemblyVersion": "4.5.0.0",
+            "fileVersion": "4.5.0.0"
           }
         }
       },
-      "DSharpPlus.Lavalink/4.4.9": {
+      "DSharpPlus.Lavalink/4.5.0": {
         "dependencies": {
-          "DSharpPlus": "4.4.9"
+          "DSharpPlus": "4.5.0"
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.Lavalink.dll": {
-            "assemblyVersion": "4.4.9.0",
-            "fileVersion": "4.4.9.0"
+            "assemblyVersion": "4.5.0.0",
+            "fileVersion": "4.5.0.0"
           }
         }
       },
-      "DSharpPlus.SlashCommands/4.4.9": {
+      "DSharpPlus.SlashCommands/4.5.0": {
         "dependencies": {
-          "DSharpPlus": "4.4.9",
+          "DSharpPlus": "4.5.0",
           "Microsoft.Extensions.DependencyInjection": "5.0.1"
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.SlashCommands.dll": {
-            "assemblyVersion": "4.4.9.0",
-            "fileVersion": "4.4.9.0"
+            "assemblyVersion": "4.5.0.0",
+            "fileVersion": "4.5.0.0"
           }
         }
       },
@@ -729,14 +729,14 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "YoutubeExplode/6.4.0": {
+      "YoutubeExplode/6.4.3": {
         "dependencies": {
           "AngleSharp": "1.1.2"
         },
         "runtime": {
           "lib/net8.0/YoutubeExplode.dll": {
-            "assemblyVersion": "6.4.0.0",
-            "fileVersion": "6.4.0.0"
+            "assemblyVersion": "6.4.3.0",
+            "fileVersion": "6.4.3.0"
           }
         }
       }
@@ -762,40 +762,40 @@
       "path": "concurrenthashset/1.3.0",
       "hashPath": "concurrenthashset.1.3.0.nupkg.sha512"
     },
-    "DSharpPlus/4.4.9": {
+    "DSharpPlus/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-RudOotg29ZEtbpmYrAfcIL323QjxbwmOZjBUwhUH/SfYKOlu82xBU/4Pr40dDY68EzzjkCxvRCtdcWeSVRWtKA==",
-      "path": "dsharpplus/4.4.9",
-      "hashPath": "dsharpplus.4.4.9.nupkg.sha512"
+      "sha512": "sha512-DilQxEBSQ+826t17QsOertkpDleUNKDk7pTr3eEmmm3eGOW3ipQW4eVASVBB0YIciFjV/qGbkzTp0+qcCdm9YA==",
+      "path": "dsharpplus/4.5.0",
+      "hashPath": "dsharpplus.4.5.0.nupkg.sha512"
     },
-    "DSharpPlus.CommandsNext/4.4.9": {
+    "DSharpPlus.CommandsNext/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6nJMa4fiPPYCwTxnniBJve19QB9DLtpTSg1aF6cWPb9PkeunlUJVaV7fGI5ZHf8ceJpykWb+3L6xlbKsVwojpw==",
-      "path": "dsharpplus.commandsnext/4.4.9",
-      "hashPath": "dsharpplus.commandsnext.4.4.9.nupkg.sha512"
+      "sha512": "sha512-CeHQGhQuUkujgKPMBqxnykSg8zaPW3MSou7iRL+vRdFqh1iIACjkQXiKhvp/YmawqxZs1YYsvcc2X9L5IKBahw==",
+      "path": "dsharpplus.commandsnext/4.5.0",
+      "hashPath": "dsharpplus.commandsnext.4.5.0.nupkg.sha512"
     },
-    "DSharpPlus.Interactivity/4.4.9": {
+    "DSharpPlus.Interactivity/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Z2kNlaecDczdpoLcvK33qx6gb5oo3BnoZ/cRS4XK69nqi7cGYu80qqYcvvZMvDPGx+fMOzehwr6MkinYHTXi7w==",
-      "path": "dsharpplus.interactivity/4.4.9",
-      "hashPath": "dsharpplus.interactivity.4.4.9.nupkg.sha512"
+      "sha512": "sha512-zZcxwkpOSkpK+Tj0c3OgRf4CxCM/N+uqeYi9nV+zb2WYtEy23+slIzqlKVqhBs2rKGkbXwOxDCaMwha+ih3YjA==",
+      "path": "dsharpplus.interactivity/4.5.0",
+      "hashPath": "dsharpplus.interactivity.4.5.0.nupkg.sha512"
     },
-    "DSharpPlus.Lavalink/4.4.9": {
+    "DSharpPlus.Lavalink/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nJHgVTwnsxu9XNtjMdINAVoWNoH5nBd388Rsni77THeMcYOyDPVcY+5M/re7tmD5QbRD8wz3o1eMpqAYmQ7mEQ==",
-      "path": "dsharpplus.lavalink/4.4.9",
-      "hashPath": "dsharpplus.lavalink.4.4.9.nupkg.sha512"
+      "sha512": "sha512-8wpOZmLkGBJ359eR+hPNOP7IzBVDiSou/VbMzAN7K9O2U4DhtkVTv19Uz0MJLgNVY+CnW06IaOG0863dXCQMoQ==",
+      "path": "dsharpplus.lavalink/4.5.0",
+      "hashPath": "dsharpplus.lavalink.4.5.0.nupkg.sha512"
     },
-    "DSharpPlus.SlashCommands/4.4.9": {
+    "DSharpPlus.SlashCommands/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rjs6AF8+J87Jufzw5TYfVa/6aXCs9hcZJ+aUfLsy+nGYYSEzKHaqz6pr/UzqatvN78GjM3N1ZPIunxLhE+qSrw==",
-      "path": "dsharpplus.slashcommands/4.4.9",
-      "hashPath": "dsharpplus.slashcommands.4.4.9.nupkg.sha512"
+      "sha512": "sha512-6ngr6EqPPfCibHnrga+8nwqsFJHM00JgiqwynKW/zY3fZnU35TUdbGiOL/RhMgx0bH/UnW6kB7YiF8dalG7mFA==",
+      "path": "dsharpplus.slashcommands/4.5.0",
+      "hashPath": "dsharpplus.slashcommands.4.5.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection/5.0.1": {
       "type": "package",
@@ -1308,12 +1308,12 @@
       "path": "system.threading.timer/4.3.0",
       "hashPath": "system.threading.timer.4.3.0.nupkg.sha512"
     },
-    "YoutubeExplode/6.4.0": {
+    "YoutubeExplode/6.4.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-jdjgUEQyTXG8CRtcadwjbymCNOQCis3fE1YQbjEZID+7foFcH+2gVqli4MpA+AFwDI2klZBG2aaFbOLDqYExzg==",
-      "path": "youtubeexplode/6.4.0",
-      "hashPath": "youtubeexplode.6.4.0.nupkg.sha512"
+      "sha512": "sha512-XM5NqB6rGBfeIlQNxx5XUFQ4eYtm9t6Gi0I0Q8UtiekwnPx3kt11cL/KAK1gnRq1huuJ43AKb/jq7A6gSciKNg==",
+      "path": "youtubeexplode/6.4.3",
+      "hashPath": "youtubeexplode.6.4.3.nupkg.sha512"
     }
   }
 }
