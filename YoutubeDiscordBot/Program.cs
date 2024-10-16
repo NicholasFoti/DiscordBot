@@ -24,7 +24,8 @@ namespace YoutubeDiscordBot
             var discordConfig = new DiscordConfiguration()
             {
                 Intents = DiscordIntents.All,
-                Token = Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"),
+                Token = "MTI3NDA1NzE3NTMxMjEwOTU2OA.Gj_xRg.i0wB4fckwZ9a2N5-mGKSkENRdyBIgeH8yg0zK4",
+                //Token = Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"),
                 TokenType = TokenType.Bot,
                 AutoReconnect = true
             };
