@@ -58,7 +58,7 @@ namespace YoutubeDiscordBot
             {
                 Hostname = "lavalink-legacy.jompo.cloud",
                 Port = 2333,
-                Secured = true,
+                Secured = false,
             };
 
             var lavalinkConfig = new LavalinkConfiguration
