@@ -39,14 +39,14 @@ namespace YoutubeDiscordBot.commands
                 // Reconnect Lavalink if the connection was lost
                 var endpoint = new ConnectionEndpoint
                 {
-                    Hostname = "lavalink-legacy.jompo.cloud",
-                    Port = 2333,
-                    Secured = false,
+                    Hostname = "lavalinkv3-id.serenetia.com",
+                    Port = 443,
+                    Secured = true,
                 };
 
                 var lavalinkConfig = new LavalinkConfiguration
                 {
-                    Password = "jompo",
+                    Password = "BatuManaBisa",
                     RestEndpoint = endpoint,
                     SocketEndpoint = endpoint
                 };
