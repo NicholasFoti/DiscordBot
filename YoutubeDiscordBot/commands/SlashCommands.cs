@@ -39,7 +39,7 @@ namespace YoutubeDiscordBot.commands
                 // Reconnect Lavalink if the connection was lost
                 var endpoint = new ConnectionEndpoint
                 {
-                    Hostname = "lavalinkv3-id.serenetia.com",
+                    Hostname = "lavalink.serenetia.com",
                     Port = 443,
                     Secured = true,
                 };
@@ -327,7 +327,10 @@ namespace YoutubeDiscordBot.commands
 
         private async Task PlayTrack(InteractionContext ctx, LavalinkGuildConnection conn, LavalinkTrack track)
         {
+            Console.WriteLine($"Attempting to play track: {track.Title}");
+            Console.WriteLine($"Track Info: Title - {track.Title}, Uri - {track.Uri}, Duration - {track.Length}");
             await conn.PlayAsync(track);
+            Console.WriteLine("Track play request sent.");
 
             try
             {
