@@ -24,8 +24,7 @@ namespace YoutubeDiscordBot
             var discordConfig = new DiscordConfiguration()
             {
                 Intents = DiscordIntents.All,
-                Token = "MTI3NDA1NzE3NTMxMjEwOTU2OA.Gj_xRg.i0wB4fckwZ9a2N5-mGKSkENRdyBIgeH8yg0zK4",
-                //Token = Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"),
+                Token = config.Token,
                 TokenType = TokenType.Bot,
                 AutoReconnect = true
             };
@@ -57,14 +56,14 @@ namespace YoutubeDiscordBot
 
             var endpoint = new ConnectionEndpoint
             {
-                Hostname = "lavalink.serenetia.com",
+                Hostname = "lava-v3.ajieblogs.eu.org",
                 Port = 443,
                 Secured = true,
             };
 
             var lavalinkConfig = new LavalinkConfiguration
             {
-                Password = "BatuManaBisa",
+                Password = "https://dsc.gg/ajidevserver",
                 RestEndpoint = endpoint,
                 SocketEndpoint = endpoint
             };
@@ -73,7 +72,7 @@ namespace YoutubeDiscordBot
 
             await Client.ConnectAsync();
             await lavalink.ConnectAsync(lavalinkConfig);
-
+            
             await Task.Delay(-1);
         }
 

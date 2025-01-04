@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using DotNetEnv;
 
 namespace YoutubeDiscordBot.config
 {
@@ -9,6 +9,8 @@ namespace YoutubeDiscordBot.config
 
         public static BotConfig FromEnvironment()
         {
+            Env.Load();
+
             return new BotConfig
             {
                 Token = Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"),

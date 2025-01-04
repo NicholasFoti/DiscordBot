@@ -37,16 +37,17 @@ namespace YoutubeDiscordBot.commands
             if (!lavalinkInstance.ConnectedNodes.Any())
             {
                 // Reconnect Lavalink if the connection was lost
+                Console.WriteLine("not connected");
                 var endpoint = new ConnectionEndpoint
                 {
-                    Hostname = "lavalink.serenetia.com",
+                    Hostname = "lava-v3.ajieblogs.eu.org",
                     Port = 443,
                     Secured = true,
                 };
 
                 var lavalinkConfig = new LavalinkConfiguration
                 {
-                    Password = "BatuManaBisa",
+                    Password = "https://dsc.gg/ajidevserver",
                     RestEndpoint = endpoint,
                     SocketEndpoint = endpoint
                 };
@@ -79,10 +80,17 @@ namespace YoutubeDiscordBot.commands
             }
 
             var searchQuery = await node.Rest.GetTracksAsync(search);
-            if (searchQuery.LoadResultType == LavalinkLoadResultType.NoMatches || searchQuery.LoadResultType == LavalinkLoadResultType.LoadFailed)
+            try
             {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"No matches found for: {search}"));
-                return;
+                if (searchQuery.LoadResultType == LavalinkLoadResultType.NoMatches || searchQuery.LoadResultType == LavalinkLoadResultType.LoadFailed)
+                {
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"No matches found for: {search}"));
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("LavaLink Connection Down or Not Established."));
             }
 
             var musicTrack = searchQuery.Tracks.First();
