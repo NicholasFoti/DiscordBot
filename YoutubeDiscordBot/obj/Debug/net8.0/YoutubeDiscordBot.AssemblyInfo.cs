@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YoutubeDiscordBot")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92bec40c98da977dcbcd87ad1c6b62e54a3e1c53")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e6052d596f3477a6774b080aa6bf0bfe606c9cc")]
 [assembly: System.Reflection.AssemblyProductAttribute("YoutubeDiscordBot")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YoutubeDiscordBot")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

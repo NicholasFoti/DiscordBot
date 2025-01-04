@@ -24,7 +24,11 @@ namespace YoutubeDiscordBot
             var discordConfig = new DiscordConfiguration()
             {
                 Intents = DiscordIntents.All,
+<<<<<<< HEAD
                 Token = config.Token,
+=======
+                Token = Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"),
+>>>>>>> parent of 92bec40 (edit)
                 TokenType = TokenType.Bot,
                 AutoReconnect = true
             };

@@ -78,10 +78,6 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
-            "Victoria": {
-              "target": "Package",
-              "version": "[7.0.5, )"
-            },
             "YoutubeExplode": {
               "target": "Package",
               "version": "[6.4.3, )"
