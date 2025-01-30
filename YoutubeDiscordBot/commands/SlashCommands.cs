@@ -40,7 +40,7 @@ namespace YoutubeDiscordBot.commands
                 Console.WriteLine("not connected");
                 var endpoint = new ConnectionEndpoint
                 {
-                    Hostname = "lava-v3.ajieblogs.eu.org",
+                    Hostname = "lavalink.serenetia.com",
                     Port = 443,
                     Secured = true,
                 };
