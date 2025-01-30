@@ -40,14 +40,14 @@ namespace YoutubeDiscordBot.commands
                 Console.WriteLine("not connected");
                 var endpoint = new ConnectionEndpoint
                 {
-                    Hostname = "lavalink.serenetia.com",
+                    Hostname = "lavalink_v3.muzykant.xyz",
                     Port = 443,
                     Secured = true,
                 };
 
                 var lavalinkConfig = new LavalinkConfiguration
                 {
-                    Password = "https://dsc.gg/ajidevserver",
+                    Password = "https://discord.gg/v6sdrD9kPh",
                     RestEndpoint = endpoint,
                     SocketEndpoint = endpoint
                 };
