@@ -56,14 +56,14 @@ namespace YoutubeDiscordBot
 
             var endpoint = new ConnectionEndpoint
             {
-                Hostname = "lavalink_v3.muzykant.xyz",
+                Hostname = "lavalinkv3-id.serenetia.com",
                 Port = 443,
                 Secured = true,
             };
 
             var lavalinkConfig = new LavalinkConfiguration
             {
-                Password = "https://discord.gg/v6sdrD9kPh",
+                Password = "https://dsc.gg/ajidevserver",
                 RestEndpoint = endpoint,
                 SocketEndpoint = endpoint
             };
