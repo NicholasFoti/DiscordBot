@@ -8,6 +8,7 @@ using DSharpPlus.Interactivity;
 using DSharpPlus.Lavalink;
 using DSharpPlus.SlashCommands;
 using DSharpPlus.Net;
+using Microsoft.Extensions.Logging;
 
 
 namespace YoutubeDiscordBot
@@ -26,7 +27,9 @@ namespace YoutubeDiscordBot
                 Intents = DiscordIntents.All,
                 Token = config.Token,
                 TokenType = TokenType.Bot,
-                AutoReconnect = true
+                AutoReconnect = true,
+                GatewayCompressionLevel = GatewayCompressionLevel.Stream, // Reduce API load
+                HttpTimeout = TimeSpan.FromSeconds(10), // Prevent excessive retries
             };
 
             Client = new DiscordClient(discordConfig);
@@ -56,7 +59,7 @@ namespace YoutubeDiscordBot
 
             var endpoint = new ConnectionEndpoint
             {
-                Hostname = "lavalinkv3-id.serenetia.com",
+                Hostname = "lava-v3.ajieblogs.eu.org",
                 Port = 443,
                 Secured = true,
             };

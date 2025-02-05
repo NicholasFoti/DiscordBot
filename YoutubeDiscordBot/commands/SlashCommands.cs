@@ -34,34 +34,34 @@ namespace YoutubeDiscordBot.commands
                 return;
             }
 
-            if (!lavalinkInstance.ConnectedNodes.Any())
-            {
-                // Reconnect Lavalink if the connection was lost
-                Console.WriteLine("not connected");
-                var endpoint = new ConnectionEndpoint
-                {
-                    Hostname = "lavalinkv3-id.serenetia.com",
-                    Port = 443,
-                    Secured = true,
-                };
+            //if (!lavalinkInstance.ConnectedNodes.Any())
+            //{
+            //    // Reconnect Lavalink if the connection was lost
+            //    Console.WriteLine("not connected");
+            //    var endpoint = new ConnectionEndpoint
+            //    {
+            //        Hostname = "lavalinkv3-id.serenetia.com",
+            //        Port = 443,
+            //        Secured = true,
+            //    };
 
-                var lavalinkConfig = new LavalinkConfiguration
-                {
-                    Password = "https://dsc.gg/ajidevserver",
-                    RestEndpoint = endpoint,
-                    SocketEndpoint = endpoint
-                };
+            //    var lavalinkConfig = new LavalinkConfiguration
+            //    {
+            //        Password = "https://dsc.gg/ajidevserver",
+            //        RestEndpoint = endpoint,
+            //        SocketEndpoint = endpoint
+            //    };
 
-                try
-                {
-                    await lavalinkInstance.ConnectAsync(lavalinkConfig);
-                }
-                catch (Exception ex)
-                {
-                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"Failed to reconnect to Lavalink: {ex.Message}"));
-                    return;
-                }
-            }
+            //    try
+            //    {
+            //        await lavalinkInstance.ConnectAsync(lavalinkConfig);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"Failed to reconnect to Lavalink: {ex.Message}"));
+            //        return;
+            //    }
+            //}
 
             if (ctx.Member.VoiceState.Channel.Type != DSharpPlus.ChannelType.Voice)
             {
