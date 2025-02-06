@@ -1,16 +1,20 @@
-﻿using DSharpPlus.CommandsNext;
-using DSharpPlus.CommandsNext.Attributes;
-using DSharpPlus.Entities;
-using DSharpPlus.Lavalink;
-using YoutubeExplode;
+﻿using YoutubeExplode;
 using YoutubeExplode.Common;
-using DSharpPlus.SlashCommands;
-using DSharpPlus;
-using DSharpPlus.Net;
+using DisCatSharp.ApplicationCommands;
+using DisCatSharp.ApplicationCommands.Attributes;
+using DisCatSharp.ApplicationCommands.Context;
+using DisCatSharp.Lavalink;
+using DisCatSharp.Entities;
+using DisCatSharp;
+using DisCatSharp.Net;
+using DisCatSharp.Lavalink.Entities;
+using DisCatSharp.Enums;
+using DisCatSharp.Lavalink.Enums;
+
 
 namespace YoutubeDiscordBot.commands
 {
-    internal class SlashCommands : ApplicationCommandModule
+    internal class SlashCommands : ApplicationCommandsModule
     {
         private static Dictionary<ulong, Queue<LavalinkTrack>> _musicQueues = new Dictionary<ulong, Queue<LavalinkTrack>>();
 
@@ -34,55 +38,55 @@ namespace YoutubeDiscordBot.commands
                 return;
             }
 
-            //if (!lavalinkInstance.ConnectedNodes.Any())
-            //{
-            //    // Reconnect Lavalink if the connection was lost
-            //    Console.WriteLine("not connected");
-            //    var endpoint = new ConnectionEndpoint
-            //    {
-            //        Hostname = "lavalinkv3-id.serenetia.com",
-            //        Port = 443,
-            //        Secured = true,
-            //    };
+            if (!lavalinkInstance.ConnectedSessions.Any())
+            {
+                // Reconnect Lavalink if the connection was lost
+                Console.WriteLine("not connected");
+                var endpoint = new ConnectionEndpoint
+                {
+                    Hostname = "lava-v4.ajieblogs.eu.org",
+                    Port = 443,
+                    Secured = true,
+                };
 
-            //    var lavalinkConfig = new LavalinkConfiguration
-            //    {
-            //        Password = "https://dsc.gg/ajidevserver",
-            //        RestEndpoint = endpoint,
-            //        SocketEndpoint = endpoint
-            //    };
+                var lavalinkConfig = new LavalinkConfiguration
+                {
+                    Password = "https://dsc.gg/ajidevserver",
+                    RestEndpoint = endpoint,
+                    SocketEndpoint = endpoint
+                };
 
-            //    try
-            //    {
-            //        await lavalinkInstance.ConnectAsync(lavalinkConfig);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"Failed to reconnect to Lavalink: {ex.Message}"));
-            //        return;
-            //    }
-            //}
+                try
+                {
+                    await lavalinkInstance.ConnectAsync(lavalinkConfig);
+                }
+                catch (Exception ex)
+                {
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"Failed to reconnect to Lavalink: {ex.Message}"));
+                    return;
+                }
+            }
 
-            if (ctx.Member.VoiceState.Channel.Type != DSharpPlus.ChannelType.Voice)
+            if (ctx.Member.VoiceState.Channel.Type != DisCatSharp.Enums.ChannelType.Voice)
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Enter a valid VC retard"));
                 return;
             }
 
-            var node = lavalinkInstance.ConnectedNodes.Values.First();
+            var node = lavalinkInstance.ConnectedSessions.Values.First();
             await node.ConnectAsync(ctx.Member.VoiceState.Channel);
 
-            var conn = node.GetGuildConnection(ctx.Member.VoiceState.Guild);
+            var conn = node.GetGuildPlayer(ctx.Member.VoiceState.Guild);
             if (conn == null)
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Failed to connect to Lavalink."));
                 return;
             }
 
-            var searchQuery = await node.Rest.GetTracksAsync(search);
+            var searchQuery = await node.LoadTracksAsync(LavalinkSearchType.Youtube, search);
             try
             {
-                if (searchQuery.LoadResultType == LavalinkLoadResultType.NoMatches || searchQuery.LoadResultType == LavalinkLoadResultType.LoadFailed)
+                if (searchQuery.LoadType == LavalinkLoadResultType.Empty || searchQuery.LoadType == LavalinkLoadResultType.Error)
                 {
                     await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"No matches found for: {search}"));
                     return;
@@ -93,24 +97,39 @@ namespace YoutubeDiscordBot.commands
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("LavaLink Connection Down or Not Established."));
             }
 
-            var musicTrack = searchQuery.Tracks.First();
-
             // Initialize queue for this guild if it doesn't exist
             if (!_musicQueues.ContainsKey(ctx.Guild.Id))
             {
                 _musicQueues[ctx.Guild.Id] = new Queue<LavalinkTrack>();
             }
 
-            if (conn.CurrentState.CurrentTrack != null)
+            // Check if a track is currently playing
+            if (conn.CurrentTrack != null)
             {
                 // If a track is currently playing, add the new track to the queue
-                _musicQueues[ctx.Guild.Id].Enqueue(musicTrack);
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"Added {musicTrack.Title} to the queue."));
+                var musicTrack = ((List<LavalinkTrack>)searchQuery.Result).FirstOrDefault();
+                if (musicTrack != null)
+                {
+                    _musicQueues[ctx.Guild.Id].Enqueue(musicTrack);
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"Added {musicTrack.Info.Title} to the queue."));
+                }
+                else
+                {
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("No tracks found."));
+                }
             }
             else
             {
                 // If no track is playing, play the new track immediately
-                await PlayTrack(ctx, conn, musicTrack);
+                var musicTrack = ((List<LavalinkTrack>)searchQuery.Result).FirstOrDefault();
+                if (musicTrack != null)
+                {
+                    await PlayTrack(ctx, conn, musicTrack);
+                }
+                else
+                {
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("No tracks found."));
+                }
             }
         }
     
@@ -132,19 +151,19 @@ namespace YoutubeDiscordBot.commands
                 return;
             }
 
-            if (!lavalinkInstance.ConnectedNodes.Any())
+            if (!lavalinkInstance.ConnectedSessions.Any())
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Connection is not established."));
                 return;
             }
 
-            if (ctx.Member.VoiceState.Channel.Type != DSharpPlus.ChannelType.Voice)
+            if (ctx.Member.VoiceState.Channel.Type != ChannelType.Voice)
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Enter a valid VC retard"));
             }
 
-            var node = lavalinkInstance.ConnectedNodes.Values.First();
-            var conn = node.GetGuildConnection(ctx.Member.VoiceState.Guild);
+            var node = lavalinkInstance.ConnectedSessions.Values.First();
+            var conn = node.GetGuildPlayer(ctx.Member.VoiceState.Guild);
 
             if (conn == null)
             {
@@ -152,7 +171,7 @@ namespace YoutubeDiscordBot.commands
                 return;
             }
 
-            if (conn.CurrentState.CurrentTrack == null)
+            if (conn.CurrentTrack == null)
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Im not even playing music bruh"));
                 return;
@@ -188,19 +207,19 @@ namespace YoutubeDiscordBot.commands
                 return;
             }
 
-            if (!lavalinkInstance.ConnectedNodes.Any())
+            if (!lavalinkInstance.ConnectedSessions.Any())
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Connection is not established."));
                 return;
             }
 
-            if (ctx.Member.VoiceState.Channel.Type != DSharpPlus.ChannelType.Voice)
+            if (ctx.Member.VoiceState.Channel.Type != ChannelType.Voice)
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Enter a valid VC retard"));
             }
 
-            var node = lavalinkInstance.ConnectedNodes.Values.First();
-            var conn = node.GetGuildConnection(ctx.Member.VoiceState.Guild);
+            var node = lavalinkInstance.ConnectedSessions.Values.First();
+            var conn = node.GetGuildPlayer(ctx.Member.VoiceState.Guild);
 
             if (conn == null)
             {
@@ -208,7 +227,7 @@ namespace YoutubeDiscordBot.commands
                 return;
             }
 
-            if (conn.CurrentState.CurrentTrack == null)
+            if (conn.CurrentTrack == null)
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Im not even playing music bruh"));
                 return;
@@ -243,19 +262,19 @@ namespace YoutubeDiscordBot.commands
                 return;
             }
 
-            if (!lavalinkInstance.ConnectedNodes.Any())
+            if (!lavalinkInstance.ConnectedSessions.Any())
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Connection is not established."));
                 return;
             }
 
-            if (ctx.Member.VoiceState.Channel.Type != DSharpPlus.ChannelType.Voice)
+            if (ctx.Member.VoiceState.Channel.Type != ChannelType.Voice)
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Enter a valid VC retard"));
             }
 
-            var node = lavalinkInstance.ConnectedNodes.Values.First();
-            var conn = node.GetGuildConnection(ctx.Member.VoiceState.Guild);
+            var node = lavalinkInstance.ConnectedSessions.Values.First();
+            var conn = node.GetGuildPlayer(ctx.Member.VoiceState.Guild);
 
             if (conn == null)
             {
@@ -263,7 +282,7 @@ namespace YoutubeDiscordBot.commands
                 return;
             }
 
-            if (conn.CurrentState.CurrentTrack == null)
+            if (conn.CurrentTrack == null)
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Im not even playing music bruh"));
                 return;
@@ -298,14 +317,14 @@ namespace YoutubeDiscordBot.commands
                 return;
             }
 
-            if (!lavalinkInstance.ConnectedNodes.Any())
+            if (!lavalinkInstance.ConnectedSessions.Any())
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Lavalink connection is not established."));
                 return;
             }
 
-            var node = lavalinkInstance.ConnectedNodes.Values.First();
-            var conn = node.GetGuildConnection(ctx.Guild);
+            var node = lavalinkInstance.ConnectedSessions.Values.First();
+            var conn = node.GetGuildPlayer(ctx.Guild);
 
             if (conn == null)
             {
@@ -313,7 +332,7 @@ namespace YoutubeDiscordBot.commands
                 return;
             }
 
-            if (conn.CurrentState.CurrentTrack == null)
+            if (conn.CurrentTrack == null)
             {
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("There is no track currently playing."));
                 return;
@@ -333,28 +352,28 @@ namespace YoutubeDiscordBot.commands
             }
         }
 
-        private async Task PlayTrack(InteractionContext ctx, LavalinkGuildConnection conn, LavalinkTrack track)
+        private async Task PlayTrack(InteractionContext ctx, LavalinkGuildPlayer conn, LavalinkTrack track)
         {
-            Console.WriteLine($"Attempting to play track: {track.Title}");
-            Console.WriteLine($"Track Info: Title - {track.Title}, Uri - {track.Uri}, Duration - {track.Length}");
+            Console.WriteLine($"Attempting to play track: {track.Info.Title}");
+            Console.WriteLine($"Track Info: Title - {track.Info.Title}, Uri - {track.Info.Uri}, Duration - {track.Info.Length}");
             await conn.PlayAsync(track);
             Console.WriteLine("Track play request sent.");
 
             try
             {
                 var youtubeClient = new YoutubeClient();
-                Console.WriteLine($"Fetching video details for {track.Identifier}");
+                Console.WriteLine($"Fetching video details for {track.Info.Uri}");
 
-                var video = await youtubeClient.Videos.GetAsync(track.Identifier);
+                var video = await youtubeClient.Videos.GetAsync(track.Info.Identifier);
                 Console.WriteLine($"Video details fetched: {video.Title}");
 
                 var thumbnailUrl = video.Thumbnails.GetWithHighestResolution().Url;
                 Console.WriteLine($"Thumbnail URL: {thumbnailUrl}");
 
 
-                string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
-                                          $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
-                                          $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Uri})";
+                string musicDescription = $"**🎵 Banger Playing:** {track.Info.Title} \n" +
+                                          $"**⏱ Duration:** {track.Info.Length.Minutes}:{track.Info.Length.Seconds:D2} \n" +
+                                          $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Info.Uri})";
 
                 var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
                 {
@@ -372,19 +391,19 @@ namespace YoutubeDiscordBot.commands
                 };
 
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(nowPlayingEmbed));
-                Console.WriteLine($"Embed for track {track.Title} sent successfully.");
+                Console.WriteLine($"Embed for track {track.Info.Title} sent successfully.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to retrieve video details or send embed for track {track.Identifier}: {ex.Message}");
+                Console.WriteLine($"Failed to retrieve video details or send embed for track {track.Info.Uri}: {ex.Message}");
                 var footerEmbed = new DiscordEmbedBuilder.EmbedFooter
                 {
                     Text = $"{ctx.Member.DisplayName}'s song",
                     IconUrl = ctx.User.AvatarUrl
                 };
-                string musicDescription = $"**🎵 Banger Playing:** {track.Title} \n" +
-                          $"**⏱ Duration:** {track.Length.Minutes}:{track.Length.Seconds:D2} \n" +
-                          $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Uri})";
+                string musicDescription = $"**🎵 Banger Playing:** {track.Info.Title} \n" +
+                          $"**⏱ Duration:** {track.Info.Length.Minutes}:{track.Info.Length.Seconds:D2} \n" +
+                          $"**🔗 URL for Kane to use in a YouTube edit:**\n({track.Info.Uri})";
                 var playingEmbed = new DiscordEmbedBuilder()
                 {
                     Color = DiscordColor.Green,
@@ -394,12 +413,12 @@ namespace YoutubeDiscordBot.commands
                 };
 
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(playingEmbed));
-                Console.WriteLine($"Default embed sent for track {track.Title} due to exception.");
+                Console.WriteLine($"Default embed sent for track {track.Info.Title} due to exception.");
 
             }
 
             // Wait for the track to finish
-            while (conn.CurrentState.CurrentTrack != null)
+            while (conn.CurrentTrack != null)
             {
                 await Task.Delay(1000);  // Check every second if the track is still playing
             }
@@ -414,7 +433,7 @@ namespace YoutubeDiscordBot.commands
             {
                 await Task.Delay(TimeSpan.FromMinutes(5));
 
-                if (conn.CurrentState.CurrentTrack == null)
+                if (conn.CurrentTrack == null)
                 {
                     // If still no track is playing, disconnect from the voice channel
                     await conn.DisconnectAsync();

@@ -9,6 +9,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{BACC6359-D398-4F75-A76E-B3D43E5B5350}|YoutubeDiscordBot\\YoutubeDiscordBot.csproj|c:\\users\\admin\\desktop\\projects\\discordbot\\youtubediscordbot\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BACC6359-D398-4F75-A76E-B3D43E5B5350}|YoutubeDiscordBot\\YoutubeDiscordBot.csproj|solutionrelative:youtubediscordbot\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BACC6359-D398-4F75-A76E-B3D43E5B5350}|YoutubeDiscordBot\\YoutubeDiscordBot.csproj|c:\\users\\admin\\desktop\\projects\\discordbot\\youtubediscordbot\\config\\botconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BACC6359-D398-4F75-A76E-B3D43E5B5350}|YoutubeDiscordBot\\YoutubeDiscordBot.csproj|solutionrelative:youtubediscordbot\\config\\botconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +22,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BotConfig.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\projects\\DiscordBot\\YoutubeDiscordBot\\config\\BotConfig.cs",
+              "RelativeDocumentMoniker": "YoutubeDiscordBot\\config\\BotConfig.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\projects\\DiscordBot\\YoutubeDiscordBot\\config\\BotConfig.cs",
+              "RelativeToolTip": "YoutubeDiscordBot\\config\\BotConfig.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T15:17:33.455Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -28,9 +45,10 @@
               "RelativeDocumentMoniker": "YoutubeDiscordBot\\Program.cs",
               "ToolTip": "C:\\Users\\Admin\\Desktop\\projects\\DiscordBot\\YoutubeDiscordBot\\Program.cs",
               "RelativeToolTip": "YoutubeDiscordBot\\Program.cs",
-              "ViewState": "AQIAAEEAAAAAAAAAAAAcwE0AAAAJAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAACcAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-26T12:32:39.964Z"
+              "WhenOpened": "2024-08-26T12:32:39.964Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -40,7 +58,7 @@
               "RelativeDocumentMoniker": "YoutubeDiscordBot\\commands\\SlashCommands.cs",
               "ToolTip": "C:\\Users\\Admin\\Desktop\\projects\\DiscordBot\\YoutubeDiscordBot\\commands\\SlashCommands.cs",
               "RelativeToolTip": "YoutubeDiscordBot\\commands\\SlashCommands.cs",
-              "ViewState": "AQIAADkAAAAAAAAAAAAAAD8AAAANAAAA",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAAAGoAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-22T14:32:20.59Z",
               "EditorCaption": ""

@@ -1,14 +1,15 @@
-using DSharpPlus;
-using DSharpPlus.CommandsNext;
+using DisCatSharp;
 using YoutubeDiscordBot.commands;
 using YoutubeDiscordBot.config;
-using DSharpPlus.EventArgs;
-using DSharpPlus.Interactivity.Extensions;
-using DSharpPlus.Interactivity;
-using DSharpPlus.Lavalink;
-using DSharpPlus.SlashCommands;
-using DSharpPlus.Net;
 using Microsoft.Extensions.Logging;
+using DisCatSharp.Lavalink;
+using DisCatSharp.Net;
+using DisCatSharp.ApplicationCommands;
+using DisCatSharp.CommandsNext;
+using DisCatSharp.Enums;
+using DisCatSharp.Interactivity.Extensions;
+using DisCatSharp.Interactivity;
+using DisCatSharp.EventArgs;
 
 
 namespace YoutubeDiscordBot
@@ -25,11 +26,11 @@ namespace YoutubeDiscordBot
             var discordConfig = new DiscordConfiguration()
             {
                 Intents = DiscordIntents.All,
-                Token = config.Token,
+                Token = "Enter Token Here",
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
-                GatewayCompressionLevel = GatewayCompressionLevel.Stream, // Reduce API load
-                HttpTimeout = TimeSpan.FromSeconds(10), // Prevent excessive retries
+                GatewayCompressionLevel = GatewayCompressionLevel.Stream,
+                HttpTimeout = TimeSpan.FromSeconds(10)
             };
 
             Client = new DiscordClient(discordConfig);
@@ -42,24 +43,16 @@ namespace YoutubeDiscordBot
             Client.Ready += Client_Ready;
             Client.ClientErrored += Client_ClientErrored;
 
-            //var commandsConfig = new CommandsNextConfiguration()
-            //{
-            //    StringPrefixes = new string[] { Environment.GetEnvironmentVariable("COMMAND_PREFIX") },
-            //    EnableMentionPrefix = true,
-            //    EnableDms = true,
-            //    EnableDefaultHelp = true,
-            //};
 
-            //Commands = Client.UseCommandsNext(commandsConfig);
-            var slash = Client.UseSlashCommands();
+            var slash = Client.UseApplicationCommands();
 
-            //Commands.RegisterCommands<MusicCommands>();
-            slash.RegisterCommands<SlashCommands>();
+            slash.RegisterGlobalCommands<SlashCommands>();
             Console.WriteLine("Slash commands registered successfully.");
+
 
             var endpoint = new ConnectionEndpoint
             {
-                Hostname = "lava-v3.ajieblogs.eu.org",
+                Hostname = "lava-v4.ajieblogs.eu.org",
                 Port = 443,
                 Secured = true,
             };
