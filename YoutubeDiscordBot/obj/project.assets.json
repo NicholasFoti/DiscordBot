@@ -44,12 +44,12 @@
           }
         }
       },
-      "DisCatSharp/10.6.6": {
+      "DisCatSharp/10.6.7": {
         "type": "package",
         "dependencies": {
           "Backport.System.Threading.Lock": "3.1.4",
           "DisCatSharp.Attributes": "10.6.6",
-          "DisCatSharp.Common": "10.6.6",
+          "DisCatSharp.Common": "10.6.7",
           "Microsoft.Bcl.HashCode": "6.0.0",
           "Microsoft.DependencyValidation.Analyzers": "0.11.0",
           "Microsoft.Extensions.DependencyInjection": "9.0.1",
@@ -59,8 +59,8 @@
           "Newtonsoft.Json": "13.0.3",
           "NuGet.Protocol": "6.12.1",
           "Octokit": "14.0.0",
-          "Sentry": "5.0.1",
-          "Sentry.Extensions.Logging": "5.0.1",
+          "Sentry": "5.1.0",
+          "Sentry.Extensions.Logging": "5.1.0",
           "System.Diagnostics.DiagnosticSource": "9.0.1",
           "System.Memory": "4.6.0",
           "System.Net.Http": "4.3.4",
@@ -79,17 +79,19 @@
           }
         }
       },
-      "DisCatSharp.ApplicationCommands/10.6.6": {
+      "DisCatSharp.ApplicationCommands/10.6.7": {
         "type": "package",
         "dependencies": {
-          "DisCatSharp": "10.6.6",
+          "Backport.System.Threading.Lock": "3.1.4",
+          "DisCatSharp": "10.6.7",
           "DisCatSharp.Attributes": "10.6.6",
-          "DisCatSharp.Common": "10.6.6",
+          "DisCatSharp.Common": "10.6.7",
           "Microsoft.DependencyValidation.Analyzers": "0.11.0",
           "Microsoft.Extensions.DependencyInjection": "9.0.1",
           "Microsoft.Extensions.Logging": "9.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.1",
-          "System.Diagnostics.DiagnosticSource": "9.0.1"
+          "System.Diagnostics.DiagnosticSource": "9.0.1",
+          "System.Memory": "4.6.0"
         },
         "compile": {
           "lib/net8.0/DisCatSharp.ApplicationCommands.dll": {
@@ -115,17 +117,19 @@
           }
         }
       },
-      "DisCatSharp.CommandsNext/10.6.6": {
+      "DisCatSharp.CommandsNext/10.6.7": {
         "type": "package",
         "dependencies": {
-          "DisCatSharp": "10.6.6",
+          "Backport.System.Threading.Lock": "3.1.4",
+          "DisCatSharp": "10.6.7",
           "DisCatSharp.Attributes": "10.6.6",
-          "DisCatSharp.Common": "10.6.6",
+          "DisCatSharp.Common": "10.6.7",
           "Microsoft.DependencyValidation.Analyzers": "0.11.0",
           "Microsoft.Extensions.DependencyInjection": "9.0.1",
           "Microsoft.Extensions.Logging": "9.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.1",
-          "System.Diagnostics.DiagnosticSource": "9.0.1"
+          "System.Diagnostics.DiagnosticSource": "9.0.1",
+          "System.Memory": "4.6.0"
         },
         "compile": {
           "lib/net8.0/DisCatSharp.CommandsNext.dll": {
@@ -138,7 +142,7 @@
           }
         }
       },
-      "DisCatSharp.Common/10.6.6": {
+      "DisCatSharp.Common/10.6.7": {
         "type": "package",
         "dependencies": {
           "Backport.System.Threading.Lock": "3.1.4",
@@ -167,17 +171,19 @@
           }
         }
       },
-      "DisCatSharp.Interactivity/10.6.6": {
+      "DisCatSharp.Interactivity/10.6.7": {
         "type": "package",
         "dependencies": {
+          "Backport.System.Threading.Lock": "3.1.4",
           "ConcurrentHashSet": "1.3.0",
-          "DisCatSharp": "10.6.6",
+          "DisCatSharp": "10.6.7",
           "DisCatSharp.Attributes": "10.6.6",
           "Microsoft.DependencyValidation.Analyzers": "0.11.0",
           "Microsoft.Extensions.DependencyInjection": "9.0.1",
           "Microsoft.Extensions.Logging": "9.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.1",
-          "System.Diagnostics.DiagnosticSource": "9.0.1"
+          "System.Diagnostics.DiagnosticSource": "9.0.1",
+          "System.Memory": "4.6.0"
         },
         "compile": {
           "lib/net8.0/DisCatSharp.Interactivity.dll": {
@@ -190,16 +196,18 @@
           }
         }
       },
-      "DisCatSharp.Lavalink/10.6.6": {
+      "DisCatSharp.Lavalink/10.6.7": {
         "type": "package",
         "dependencies": {
-          "DisCatSharp": "10.6.6",
+          "Backport.System.Threading.Lock": "3.1.4",
+          "DisCatSharp": "10.6.7",
           "DisCatSharp.Attributes": "10.6.6",
           "Microsoft.DependencyValidation.Analyzers": "0.11.0",
           "Microsoft.Extensions.DependencyInjection": "9.0.1",
           "Microsoft.Extensions.Logging": "9.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.1",
-          "System.Diagnostics.DiagnosticSource": "9.0.1"
+          "System.Diagnostics.DiagnosticSource": "9.0.1",
+          "System.Memory": "4.6.0"
         },
         "compile": {
           "lib/net8.0/DisCatSharp.Lavalink.dll": {
@@ -975,7 +983,7 @@
           }
         }
       },
-      "Sentry/5.0.1": {
+      "Sentry/5.1.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/Sentry.dll": {
@@ -991,13 +999,13 @@
           "buildTransitive/Sentry.targets": {}
         }
       },
-      "Sentry.Extensions.Logging/5.0.1": {
+      "Sentry.Extensions.Logging/5.1.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Binder": "8.0.0",
           "Microsoft.Extensions.Http": "8.0.0",
           "Microsoft.Extensions.Logging.Configuration": "8.0.0",
-          "Sentry": "5.0.1"
+          "Sentry": "5.1.0"
         },
         "compile": {
           "lib/net8.0/Sentry.Extensions.Logging.dll": {
@@ -2658,16 +2666,16 @@
         "lib/netstandard2.0/ConcurrentCollections.xml"
       ]
     },
-    "DisCatSharp/10.6.6": {
-      "sha512": "rsEA+cj1xuc6nLEXgazm+eTeDFsq+Je/kcooRIRypljZrgSUAKIk5hxD+06eTIvt5F5sEAZLoAT/xp7MsllONw==",
+    "DisCatSharp/10.6.7": {
+      "sha512": "+54+2gBf2lMwTJzOVPyYMLFtJS/Wlum/kZdTvF7aDrZL9+wQlhF36tfU6cGmcPXXDaNZQ4LEMP1u4f5QK/VXRg==",
       "type": "package",
-      "path": "discatsharp/10.6.6",
+      "path": "discatsharp/10.6.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
         "RELEASENOTES.md",
-        "discatsharp.10.6.6.nupkg.sha512",
+        "discatsharp.10.6.7.nupkg.sha512",
         "discatsharp.nuspec",
         "lib/net8.0/DisCatSharp.dll",
         "lib/net8.0/DisCatSharp.pdb",
@@ -2678,16 +2686,16 @@
         "logo-pride.png"
       ]
     },
-    "DisCatSharp.ApplicationCommands/10.6.6": {
-      "sha512": "jItCyjJXCqlLsVZOVmmG6aII4r5+mGV/kRrJEP4GCmhcUTmFAsy/uQFIMJSpavwS8kdGXLMLhcCT8mcd5nKuMw==",
+    "DisCatSharp.ApplicationCommands/10.6.7": {
+      "sha512": "ZG1e3GMqJ/hCnf6ECaJg70nmyBGJHNIoGVVmCnwZhHUk+VidZJzVYUI5NytuMGribSK0BD6fHTHDU0YDOisoKw==",
       "type": "package",
-      "path": "discatsharp.applicationcommands/10.6.6",
+      "path": "discatsharp.applicationcommands/10.6.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
         "RELEASENOTES.md",
-        "discatsharp.applicationcommands.10.6.6.nupkg.sha512",
+        "discatsharp.applicationcommands.10.6.7.nupkg.sha512",
         "discatsharp.applicationcommands.nuspec",
         "lib/net8.0/DisCatSharp.ApplicationCommands.dll",
         "lib/net8.0/DisCatSharp.ApplicationCommands.pdb",
@@ -2715,16 +2723,16 @@
         "logo-pride.png"
       ]
     },
-    "DisCatSharp.CommandsNext/10.6.6": {
-      "sha512": "fqtiXd9RqxJB0IdCRp+l48fPC6Lcfka9/lQZ0R0IUXSWns4gwKHxpMc59o3mrMv5kUKsKLas+pOwy+nhVEj2FQ==",
+    "DisCatSharp.CommandsNext/10.6.7": {
+      "sha512": "2DFbvUPoIIFRstpZKdwuWKwVYkT2krDa4Gj0RSZfzVE1GGtp0Cte+WfKC93uLsPkxepSUU/GdiLvtpdkDj1aaA==",
       "type": "package",
-      "path": "discatsharp.commandsnext/10.6.6",
+      "path": "discatsharp.commandsnext/10.6.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
         "RELEASENOTES.md",
-        "discatsharp.commandsnext.10.6.6.nupkg.sha512",
+        "discatsharp.commandsnext.10.6.7.nupkg.sha512",
         "discatsharp.commandsnext.nuspec",
         "lib/net8.0/DisCatSharp.CommandsNext.dll",
         "lib/net8.0/DisCatSharp.CommandsNext.pdb",
@@ -2735,16 +2743,16 @@
         "logo-pride.png"
       ]
     },
-    "DisCatSharp.Common/10.6.6": {
-      "sha512": "CCPl2L2a3aR8xXfqnZcGp1P71SU+JEBtO9KbSlN7W4cOVOpmTh/iKb+ltMTwC9pIvlTUHX8V8YCy8XznBEvczw==",
+    "DisCatSharp.Common/10.6.7": {
+      "sha512": "p95kIz4/tS6YtfmbR1P/f9X+BxIyHJ34y4+eOwooN2dT9goOfR+FZi6NfDvlm7zRAYo/pTRgWz+LYC+AxNj6qQ==",
       "type": "package",
-      "path": "discatsharp.common/10.6.6",
+      "path": "discatsharp.common/10.6.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
         "RELEASENOTES.md",
-        "discatsharp.common.10.6.6.nupkg.sha512",
+        "discatsharp.common.10.6.7.nupkg.sha512",
         "discatsharp.common.nuspec",
         "lib/net8.0/DisCatSharp.Common.dll",
         "lib/net8.0/DisCatSharp.Common.pdb",
@@ -2755,16 +2763,16 @@
         "logo-pride.png"
       ]
     },
-    "DisCatSharp.Interactivity/10.6.6": {
-      "sha512": "XbbRgolks4jTyMlT/zQA4i8GTtBP1buZaTsOXORdDLGhKczJr3kuiSatDNOIdQvuuZxgnCwhQdwU3829zdvkBA==",
+    "DisCatSharp.Interactivity/10.6.7": {
+      "sha512": "heTXylpbebJWHCJxSf4xhmeT3InFPSaQbaUKmC5+l2JtCZPgIiWX/qT4tWgBURmovbwmyzGimmJi29WhlfpWNQ==",
       "type": "package",
-      "path": "discatsharp.interactivity/10.6.6",
+      "path": "discatsharp.interactivity/10.6.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
         "RELEASENOTES.md",
-        "discatsharp.interactivity.10.6.6.nupkg.sha512",
+        "discatsharp.interactivity.10.6.7.nupkg.sha512",
         "discatsharp.interactivity.nuspec",
         "lib/net8.0/DisCatSharp.Interactivity.dll",
         "lib/net8.0/DisCatSharp.Interactivity.pdb",
@@ -2775,16 +2783,16 @@
         "logo-pride.png"
       ]
     },
-    "DisCatSharp.Lavalink/10.6.6": {
-      "sha512": "ec7f18kCCRmi8AgnMQGKrnymMrhC7Lu8Sz36v94IrLnTmOWVdwfBicvurxbHUTGQtLuefB1n7BC5X2ypmHxprw==",
+    "DisCatSharp.Lavalink/10.6.7": {
+      "sha512": "FEuHmDF6it7iuxmRzCIyEe9IEh+0HPZ0/cv6LdM/brhMZ7eLx3r8QaBGhOCfCDKM9euVCfa/G5WbchObuLOgGQ==",
       "type": "package",
-      "path": "discatsharp.lavalink/10.6.6",
+      "path": "discatsharp.lavalink/10.6.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
         "RELEASENOTES.md",
-        "discatsharp.lavalink.10.6.6.nupkg.sha512",
+        "discatsharp.lavalink.10.6.7.nupkg.sha512",
         "discatsharp.lavalink.nuspec",
         "lib/net8.0/DisCatSharp.Lavalink.dll",
         "lib/net8.0/DisCatSharp.Lavalink.pdb",
@@ -3921,10 +3929,10 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
-    "Sentry/5.0.1": {
-      "sha512": "h1rKFYXx58dUtAcsWpTlJGHhG1bpy0JjGh8b2sRKw2wdk3NKCGd8KTLSWnzIqIjjZP2PNeUZFUyDeWVKs8Dk2A==",
+    "Sentry/5.1.0": {
+      "sha512": "G9ynQGBc937yO+TFda09WQfTHKiwqVN8pgtM7LU6o2ciu8WVAE8IceSW0olp6nI9nWj99DtV/KAS2OKGK4B+Vg==",
       "type": "package",
-      "path": "sentry/5.0.1",
+      "path": "sentry/5.1.0",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -3960,7 +3968,7 @@
         "sentry-native/osx/libsentry-native.a",
         "sentry-native/win-x64/sentry-native.lib",
         "sentry-nuget.png",
-        "sentry.5.0.1.nupkg.sha512",
+        "sentry.5.1.0.nupkg.sha512",
         "sentry.nuspec",
         "tools/sentry-cli-Darwin-arm64",
         "tools/sentry-cli-Darwin-x86_64",
@@ -3971,10 +3979,10 @@
         "tools/sentry-cli-Windows-x86_64.exe"
       ]
     },
-    "Sentry.Extensions.Logging/5.0.1": {
-      "sha512": "SBeyXmc7q2xX2FA2fJniMkHYtowdc6tCwtv9rHuW9e/NtazxIeRt5ltpSbBRn9UtodOvxB5bRLFOvFExuGeIag==",
+    "Sentry.Extensions.Logging/5.1.0": {
+      "sha512": "DKluf6xiLHioUsaEMR85xyFNL+a3oPor2f1/9VOOGGQkxrcHIVUldoD2yCQ7SivVu4d1SgApOx0w8Y5D/dDeeA==",
       "type": "package",
-      "path": "sentry.extensions.logging/5.0.1",
+      "path": "sentry.extensions.logging/5.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3986,7 +3994,7 @@
         "lib/netstandard2.0/Sentry.Extensions.Logging.dll",
         "lib/netstandard2.0/Sentry.Extensions.Logging.xml",
         "sentry-nuget.png",
-        "sentry.extensions.logging.5.0.1.nupkg.sha512",
+        "sentry.extensions.logging.5.1.0.nupkg.sha512",
         "sentry.extensions.logging.nuspec"
       ]
     },
@@ -7913,11 +7921,11 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "DisCatSharp >= 10.6.6",
-      "DisCatSharp.ApplicationCommands >= 10.6.6",
-      "DisCatSharp.CommandsNext >= 10.6.6",
-      "DisCatSharp.Interactivity >= 10.6.6",
-      "DisCatSharp.Lavalink >= 10.6.6",
+      "DisCatSharp >= 10.6.7",
+      "DisCatSharp.ApplicationCommands >= 10.6.7",
+      "DisCatSharp.CommandsNext >= 10.6.7",
+      "DisCatSharp.Interactivity >= 10.6.7",
+      "DisCatSharp.Lavalink >= 10.6.7",
       "DotNetEnv >= 3.1.1",
       "Newtonsoft.Json >= 13.0.3",
       "YoutubeExplode >= 6.4.3"
@@ -7975,23 +7983,23 @@
         "dependencies": {
           "DisCatSharp": {
             "target": "Package",
-            "version": "[10.6.6, )"
+            "version": "[10.6.7, )"
           },
           "DisCatSharp.ApplicationCommands": {
             "target": "Package",
-            "version": "[10.6.6, )"
+            "version": "[10.6.7, )"
           },
           "DisCatSharp.CommandsNext": {
             "target": "Package",
-            "version": "[10.6.6, )"
+            "version": "[10.6.7, )"
           },
           "DisCatSharp.Interactivity": {
             "target": "Package",
-            "version": "[10.6.6, )"
+            "version": "[10.6.7, )"
           },
           "DisCatSharp.Lavalink": {
             "target": "Package",
-            "version": "[10.6.6, )"
+            "version": "[10.6.7, )"
           },
           "DotNetEnv": {
             "target": "Package",
